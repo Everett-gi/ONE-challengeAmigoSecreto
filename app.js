@@ -36,8 +36,37 @@ function sortearAmigo(){
     } else{
         let sorteio = numeroAleatorio(listaDeAmigos.length);
         let sorteado = document.getElementById("resultado");
-        sorteado.innerHTML = listaDeAmigos.at(sorteio - 1);
+        sorteado.innerHTML = `Seu amigo secreto é ${listaDeAmigos.at(sorteio - 1)}`;
     }
+    alert("Precione esc para reiniciar o jogo");
 }
 
+//dando vida a tecla "enter".
+document.getElementById("amigo").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        adicionarAmigo();
+    }
+});
+
+//dando vida a tecla "alt" para realizar o sorteio.
+document.addEventListener("keydown", function(event) {
+    if (event.altKey) {  
+        sortearAmigo();
+    }
+});
+
+//dando vida a tecla "esc".
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {  
+        reiniciarJogo(); 
+    }
+});
+
+// Função para reiniciar o jogo.
+function reiniciarJogo() {
+    listaDeAmigos = [];
+    document.getElementById("listaAmigos").innerHTML = "";  
+    document.getElementById("resultado").innerHTML = "";  
+    alert("O jogo foi reiniciado! Adicione novos amigos para começar.");
+}
 let listaDeAmigos = [];
